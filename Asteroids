@@ -1,0 +1,99 @@
+Pseudocode for an asteroids game, pseudocode is not meant to be treated as actual code however
+this will provide a framework for building the game.
+
+
+Need classes for:
+Ship
+Bullet
+Asteroids
+
+global vars:
+player
+enemy
+enemyList
+bullet
+bulletList
+bullettimeOut
+
+
+  -In the draw function, we need to update and draw our player.
+  
+  -Asteroids spawn on the edges of the map, so we could put in a random y and x as long as they are in [0-5, or 395-400] (on the edge of screen)
+  
+  
+  -We need to add deltatime to our Asttimeout so that our asteroids only spawn every 0.3 seconds
+  
+    if timeout > 300 then make a new asteroid and add it to enemy list, start updating it. also set timeout back to zero
+
+  -every frame we also need to check if space is held using keyPressed, and if it is spawn a new bullet with player rotation and shoot it.
+increment bullettimeout by deltatime so we cant spawn a bullet every frame. 
+
+  -every frame need to:
+  -Move and Show player
+  -Move and show asteroid
+  -Move and show bullet(s)
+  -check player and asteroid collision with dist.
+  -check bullet and asteroid collision with dist. function 
+
+
+
+Ship Class:
+  vars:
+    this.rotationSpeed
+    this.direction
+    this.x
+    this.y
+
+  CharacterRotate function:
+    called every frame, using the P5 rotate() function. We have to take the users keyboarrd input again with keyCode = LEFT and RIGHT. 
+    something like:
+      //if(KeyCode == LEFT):
+          this.direction-=this.rotationspeed
+        else:   this.direction-=this.rotationspeed
+
+        rotate(this.direction)
+   
+   CharacterShow func:
+    simply draws sprite
+    
+    
+    
+    
+ Bullet Class:
+   vars this.x
+   this.y
+   this.Speed
+   this.rotation
+   
+   bulletMove func:
+    for every bullet fired we need to have a way to move it in the correct direction it was fired in. There might be a way with p5 functions to do this easier but
+    lets try to rotate(rotation) once and then move by speed every frame
+    
+   bulletGetRotation func:
+    when a bullet is made we are going to grab players current rotation and set that to bullet rotation so we move properly
+    
+   bulletTestHit func:
+    tests if bullet x and y dist is hitting asteroid x and y, if so we want to call a destroy asteroid func
+    
+    
+  Asteroid Class:
+    vars this.y
+    this.x
+    this.speed
+    this.rotation
+    
+    
+   asteroidMove func:
+    on creation our asteroid will be rotated, now we move it by x and y speed each frame. (Im not certain this will work you may need to use trigonomtry functions :(
+    
+   enemyShow func:
+    show sprite
+    
+   HitBullet func:
+      called if bullet touching asteroid by using dist function, if so destroy this asteroid but create 2 new asteroids from it with the same x and y, give them 
+      random rotation
+      
+   HitPlayer func:
+      test if we are hitting the player using dist(), if so display a game over or an enemy hit line etc.
+      
+      
