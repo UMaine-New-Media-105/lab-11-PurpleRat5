@@ -15,6 +15,8 @@ bullet
 bulletList
 bullettimeOut
 enemyTimeOut
+playerHealth
+
 
   -In the draw function, we need to update and draw our player.
   
@@ -52,7 +54,7 @@ Ship Class:
     show bullet sprite
     
    bulletTestHit func:
-    tests if bullet x and y dist is hitting enemy x and y, if so we want to call a destroy enemy func
+    tests if bullet x and y dist is hitting enemy x and y, if so we want to remove enemy from its list
     
   Enemy Class:
     vars this.y
@@ -65,8 +67,9 @@ Ship Class:
    enemyShow func:
     show sprite
     
-    enemyHit func:
-      called if bullet touching enemy, if so destroy this enemy from an enemy list and stop updating it
+   hitBottom func:
+      if the enemy has a high enough y value over height, then reduce player hp by 1 and destroy this enemy from list.
+       also would probably test if playerhp is at zero then give a game over prompt.
       
       
       
