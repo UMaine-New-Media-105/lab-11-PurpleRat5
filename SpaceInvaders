@@ -1,0 +1,72 @@
+Pseudocode for a simple space invaders game, pseudocode is not meant to be treated as actual code however
+this will provide a framework for building the game.
+
+
+Need classes for:
+Ship
+Bullet
+Enemy
+
+global vars:
+player
+enemy
+enemyList
+bullet
+bulletList
+bullettimeOut
+enemyTimeOut
+
+  -In the draw function, we need to update and draw our player.
+  
+  -We also need to add deltatime to our enemytimeout so that our enemies only spawn every 2 seconds
+if timeout > 2000 then make a new enemy and add it to enemy list, start updating it. also set timeout back to zero
+
+  -every frame we also need to check if space is held using keyPressed, and if it is spawn a new bullet with y speed and shoot it upwards.
+increment bullettimeout by deltatime so we cant spawn a bullet every frame. 
+
+  -every frame we also need to check bullet and enemy collision with dist.
+
+
+
+Ship Class:
+  vars:
+    this.x
+    this.xSpeed
+
+  CharacterMove function:
+    this function takes no inputs and is called every frame. It needs to take the user keyboard LEFT and RIGHT to move this.x by XSpeed.
+    get keys using keyCode under a keyIsPressed() function
+   
+   CharacterShow func:
+    simply draws sprite
+    
+ Bullet Class:
+   vars this.x
+   this.y
+   this.ySpeed
+   
+   bulletMove func:
+    move bullet up by ySpeed every frame in update
+    
+   bulletShow func:
+    show bullet sprite
+    
+   bulletTestHit func:
+    tests if bullet x and y dist is hitting enemy x and y, if so we want to call a destroy enemy func
+    
+  Enemy Class:
+    vars this.y
+    this.x
+    this.Yspeed
+    
+   enemyMove func:
+    move y by Yspeed each frame
+    
+   enemyShow func:
+    show sprite
+    
+    enemyHit func:
+      called if bullet touching enemy, if so destroy this enemy from an enemy list and stop updating it
+      
+      
+      
